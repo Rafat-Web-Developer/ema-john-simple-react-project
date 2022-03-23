@@ -8,15 +8,21 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cartItem, setCartItem] = useState([]);
 
+    // load all products from db where bd is in the public folder
     useEffect( () =>{
         fetch('products.json')
         .then(res=> res.json())
         .then(data => setProducts(data))
     }, []);
 
+    // load cart from localStorage for change the products state
     useEffect(() => {
+        // get cart
         const getCart = findAndSetCart();
+        
         const newCartItems = [];
+        
+        // find all products information from product state using id which are save in localStorage  
         for (const productId in getCart) {
             const getProduct = products.find(product => product.id === productId);
             if(getProduct){
@@ -26,6 +32,7 @@ const Shop = () => {
                 newCartItems.push(getProduct);
             }
         }
+
         setCartItem(newCartItems);
     }, [products]);
 
@@ -33,6 +40,7 @@ const Shop = () => {
         
         let newCart = [];
 
+        // find the cart is already present or not in the cart array
         const existProduct = cartItem.find(product => product.id === selectProduct.id);
         if(!existProduct){
             selectProduct.quantity = 1;
