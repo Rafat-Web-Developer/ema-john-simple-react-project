@@ -20,6 +20,9 @@ const Shop = () => {
         for (const productId in getCart) {
             const getProduct = products.find(product => product.id === productId);
             if(getProduct){
+                const quantity = getCart[productId];
+                getProduct.quantity = quantity;
+                // console.log(getProduct);
                 newCartItems.push(getProduct);
             }
         }
@@ -27,9 +30,9 @@ const Shop = () => {
     }, [products]);
 
     const handleAddToCart = (product) =>{
+        addToDb(product.id);
         const newCart = [...cartItem, product];
         setCartItem(newCart);
-        addToDb(product.id);
     }
 
     return (
