@@ -39,4 +39,4 @@ export {
     addToDb, 
     removeFromDb,
     deleteShoppingCart
-}
+};
