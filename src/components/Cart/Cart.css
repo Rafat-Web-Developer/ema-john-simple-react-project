@@ -1,0 +1,10 @@
+.cart-items {
+  position: sticky;
+  top: 0;
+}
+.cart-item-title {
+  text-align: center;
+}
+.cart-item-body {
+  padding: 0px 10px;
+}
