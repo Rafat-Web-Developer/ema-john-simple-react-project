@@ -19,15 +19,21 @@ const Orders = () => {
   return (
     <div className="shop-container">
       <div className="order-products-container">
-        {cartItem.map((product) => (
-          <SingleOrderItem
-            singleOrderItem={product}
-            clickDeleteSingleOrderedItem={handleDeleteSingleOrderedItem}
-          ></SingleOrderItem>
-        ))}
+        {cartItem.length > 0 ? (
+          cartItem.map((product) => (
+            <SingleOrderItem
+              singleOrderItem={product}
+              clickDeleteSingleOrderedItem={handleDeleteSingleOrderedItem}
+            ></SingleOrderItem>
+          ))
+        ) : (
+          <h1>Empty Cart</h1>
+        )}
       </div>
       <div className="cart-container">
-        <Cart cart={cartItem}></Cart>
+        <Cart cart={cartItem}>
+          <button>Button Into Order</button>
+        </Cart>
       </div>
     </div>
   );

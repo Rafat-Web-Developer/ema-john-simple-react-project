@@ -44,7 +44,9 @@ const Shop = () => {
         ))}
       </div>
       <div className="cart-container">
-        <Cart cart={cartItem}></Cart>
+        <Cart cart={cartItem}>
+          <button>Button Into Shop</button>
+        </Cart>
       </div>
     </div>
   );
