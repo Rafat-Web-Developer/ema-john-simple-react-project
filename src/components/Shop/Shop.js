@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
 import { addToDb, findAndSetCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
@@ -7,28 +8,7 @@ import "./Shop.css";
 
 const Shop = () => {
   const [products, setProducts] = useProducts();
-  const [cartItem, setCartItem] = useState([]);
-
-  // load cart from localStorage for change the products state
-  useEffect(() => {
-    // get cart
-    const getCart = findAndSetCart();
-
-    const newCartItems = [];
-
-    // find all products information from product state using id which are save in localStorage
-    for (const productId in getCart) {
-      const getProduct = products.find((product) => product.id === productId);
-      if (getProduct) {
-        const quantity = getCart[productId];
-        getProduct.quantity = quantity;
-        // console.log(getProduct);
-        newCartItems.push(getProduct);
-      }
-    }
-
-    setCartItem(newCartItems);
-  }, [products]);
+  const [cartItem, setCartItem] = useCart(products);
 
   const handleAddToCart = (selectProduct) => {
     let newCart = [];
