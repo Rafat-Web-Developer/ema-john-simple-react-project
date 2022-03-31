@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./SingleOrderItem.css";
 
-const SingleOrderItem = ({ singleOrderItem }) => {
-  const { img, name, price, shipping, quantity } = singleOrderItem;
+const SingleOrderItem = ({ singleOrderItem, clickDeleteSingleOrderedItem }) => {
+  const { id, img, name, price, shipping, quantity } = singleOrderItem;
   return (
     <div className="single-order-item-container">
       <img src={img} alt="" />
@@ -16,7 +16,7 @@ const SingleOrderItem = ({ singleOrderItem }) => {
           <p>Quantity : {quantity}</p>
         </div>
         <div className="single-order-item-delete">
-          <button>
+          <button onClick={() => clickDeleteSingleOrderedItem(id)}>
             <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
           </button>
         </div>
