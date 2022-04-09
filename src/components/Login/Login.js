@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -15,6 +16,12 @@ const Login = () => {
           <input type="password" name="password" />
         </div>
         <input type="submit" value="Login" className="form-btn" />
+        <p className="form-link-text">
+          Create a new account{" "}
+          <Link className="form-link" to="/signup">
+            Sign Up
+          </Link>
+        </p>
         <div className="orDiv">
           <div className="line"></div>
           <p className="orText">or</p>

@@ -47,6 +47,15 @@
 .form-btn:hover{
     background-color: #db8f02;
 }
+.form-link-text{
+    color: white;
+    font-weight: bold;
+}
+.form-link{
+    text-decoration: none;
+    color: orange;
+    margin-left: 10px;
+}
 .orDiv{
     margin: 30px 0px;
     display: flex;
