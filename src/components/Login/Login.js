@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import "./Login.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailField = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordField = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="form-container">
       <h1 className="form-header">Login</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" />
+          <input onBlur={handleEmailField} type="email" name="email" />
         </div>
         <div className="input-group">
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" />
+          <input onBlur={handlePasswordField} type="password" name="password" />
         </div>
         <input type="submit" value="Login" className="form-btn" />
         <p className="form-link-text">

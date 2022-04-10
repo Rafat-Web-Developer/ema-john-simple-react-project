@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [createUserWithEmailAndPassword, user] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const navigate = useNavigate();
+  if (user) {
+    navigate("/shop");
+  }
 
   const handleEmailField = (event) => {
     setEmail(event.target.value);
@@ -18,9 +28,16 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Email : ", email);
-    console.log("Password : ", password);
-    console.log("Confirm Password : ", confirmPassword);
+    if (password !== confirmPassword) {
+      setErrorMessage("Confirm password not matched!!");
+      return;
+    }
+    if (password.length < 6) {
+      setErrorMessage("Password must have 6 characters.");
+      return;
+    }
+    setErrorMessage("");
+    createUserWithEmailAndPassword(email, password);
   };
 
   return (
@@ -43,6 +60,7 @@ const SignUp = () => {
             name="confirm-password"
           />
         </div>
+        <p style={{ color: "red" }}>{errorMessage}</p>
         <input type="submit" value="Sign Up" className="form-btn" />
         <p className="form-link-text">
           Already have an account{" "}
