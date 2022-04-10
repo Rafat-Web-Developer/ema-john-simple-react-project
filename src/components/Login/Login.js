@@ -22,7 +22,7 @@ const Login = () => {
   const handlePasswordField = (e) => {
     setPassword(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(email, password);
   };
@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <div className="form-container">
       <h1 className="form-header">Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input onBlur={handleEmailField} type="email" name="email" />
