@@ -26,7 +26,7 @@ const SignUp = () => {
     setConfirmPassword(event.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage("Confirm password not matched!!");
@@ -43,7 +43,7 @@ const SignUp = () => {
   return (
     <div className="form-container">
       <h1 className="form-header">Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignIn}>
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input onBlur={handleEmailField} type="email" name="email" />
